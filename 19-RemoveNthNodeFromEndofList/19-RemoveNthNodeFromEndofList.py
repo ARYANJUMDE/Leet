@@ -1,28 +1,34 @@
-# Last updated: 3/16/2026, 6:48:36 PM
-1from  collections import deque
-2class MyStack(object):
-3
-4    def __init__(self):
-5        self.q1=deque()
-6        self.q2=deque()
-7
-8    def push(self, x):
-9        self.q2.append(x)
-10        while self.q1:
-11            self.q2.append(self.q1.popleft())
-12        self.q1,self.q2=self.q2,self.q1
+# Last updated: 3/16/2026, 6:57:45 PM
+1class MinStack(object):
+2
+3    def __init__(self):
+4        self.stack=[]
+5        self.minStack=[]
+6
+7    def push(self, val):
+8        self.stack.append(val)
+9        if not self.minStack or val<=self.minStack[-1]:
+10            self.minStack.append(val)
+11        
+12    def pop(self):
 13
-14    def pop(self):
-15        return self.q1.popleft()
-16    def top(self):
-17
-18        return self.q1[0]
-19    def empty(self):
-20        return len(self.q1)==0
+14        if self.minStack[-1]==self.stack[-1]:
+15            self.minStack.pop()
+16        self.stack.pop()
+17        
+18
+19    def top(self):
+20        return self.stack[-1]
 21        
-22# Your MyStack object will be instantiated and called as such:
-23# obj = MyStack()
-24# obj.push(x)
-25# param_2 = obj.pop()
-26# param_3 = obj.top()
-27# param_4 = obj.empty()
+22
+23    def getMin(self):
+24        return self.minStack[-1]
+25        
+26
+27
+28# Your MinStack object will be instantiated and called as such:
+29# obj = MinStack()
+30# obj.push(val)
+31# obj.pop()
+32# param_3 = obj.top()
+33# param_4 = obj.getMin()
