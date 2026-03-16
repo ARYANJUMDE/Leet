@@ -1,39 +1,44 @@
-# Last updated: 3/16/2026, 8:30:08 PM
-1"""
-2# Definition for a Node.
-3class Node:
-4    def __init__(self, x, next=None, random=None):
-5        self.val = int(x)
-6        self.next = next
-7        self.random = random
-8"""
-9
-10class Solution(object):
-11    def copyRandomList(self, head):
-12        
-13        if not head:
-14            return None
-15        
-16        oldToNew = {}
-17        
-18        curr = head
-19        
-20        # create copy of each node
-21        while curr:
-22            copy = Node(curr.val)
-23            oldToNew[curr] = copy
-24            curr = curr.next
-25        
-26        curr = head
-27        
-28        # assign next and random pointers
-29        while curr:
-30            copy = oldToNew[curr]
-31            
-32            copy.next = oldToNew.get(curr.next)
-33            copy.random = oldToNew.get(curr.random)
-34            
-35            curr = curr.next
-36        
-37        return oldToNew[head]
-38        
+# Last updated: 3/16/2026, 8:31:21 PM
+1# Definition for singly-linked list.
+2# class ListNode(object):
+3#     def __init__(self, val=0, next=None):
+4#         self.val = val
+5#         self.next = next
+6class Solution(object):
+7    def reorderList(self, head):
+8        if not head or not head.next:
+9            return
+10        
+11        # 1. Find middle
+12        slow = head
+13        fast = head
+14        
+15        while fast and fast.next:
+16            slow = slow.next
+17            fast = fast.next.next
+18        
+19        # 2. Reverse second half
+20        prev = None
+21        curr = slow.next
+22        slow.next = None
+23        
+24        while curr:
+25            temp = curr.next
+26            curr.next = prev
+27            prev = curr
+28            curr = temp
+29        
+30        # 3. Merge two lists
+31        first = head
+32        second = prev
+33        
+34        while second:
+35            temp1 = first.next
+36            temp2 = second.next
+37            
+38            first.next = second
+39            second.next = temp1
+40            
+41            first = temp1
+42            second = temp2
+43        
