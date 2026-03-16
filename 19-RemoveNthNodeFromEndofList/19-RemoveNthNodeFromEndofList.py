@@ -1,27 +1,29 @@
-# Last updated: 3/16/2026, 8:25:04 PM
+# Last updated: 3/16/2026, 8:26:57 PM
 1# Definition for singly-linked list.
 2# class ListNode(object):
 3#     def __init__(self, val=0, next=None):
 4#         self.val = val
 5#         self.next = next
 6class Solution(object):
-7    def deleteDuplicates(self, head):
-8        dummy = ListNode(0)
-9        dummy.next = head
-10        prev = dummy
-11        
-12        while head:
-13            
-14            if head.next and head.val == head.next.val:
-15                
-16                while head.next and head.val == head.next.val:
-17                    head = head.next
-18                
-19                prev.next = head.next
-20            
-21            else:
-22                prev = prev.next
-23            
-24            head = head.next
-25        
-26        return dummy.next
+7    def partition(self, head, x):
+8        beforeHead = ListNode(0)
+9        afterHead = ListNode(0)
+10        
+11        before = beforeHead
+12        after = afterHead
+13        
+14        while head:
+15            if head.val < x:
+16                before.next = head
+17                before = before.next
+18            else:
+19                after.next = head
+20                after = after.next
+21            
+22            head = head.next
+23        
+24        after.next = None
+25        before.next = afterHead.next
+26        
+27        return beforeHead.next
+28        
