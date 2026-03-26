@@ -1,4 +1,4 @@
-# Last updated: 3/26/2026, 8:32:08 PM
+# Last updated: 3/26/2026, 8:34:57 PM
 1# Definition for a binary tree node.
 2# class TreeNode(object):
 3#     def __init__(self, val=0, left=None, right=None):
@@ -6,23 +6,19 @@
 5#         self.left = left
 6#         self.right = right
 7class Solution(object):
-8    def isBalanced(self, root):
-9        
-10        def check(node):
-11            if node is None:
-12                return 0  
-13            
-14            left = check(node.left)
-15            if left == -1:
-16                return -1
+8    def diameterOfBinaryTree(self, root):
+9        self.diameter = 0
+10        
+11        def height(node):
+12            if node is None:
+13                return 0
+14            
+15            left = height(node.left)
+16            right = height(node.right)
 17            
-18            right = check(node.right)
-19            if right == -1:
-20                return -1
-21            
-22            if abs(left - right) > 1:
-23                return -1
-24            
-25            return 1 + max(left, right)
-26        
-27        return check(root) != -1        
+18            self.diameter = max(self.diameter, left + right)
+19            
+20            return 1 + max(left, right)
+21        
+22        height(root)
+23        return self.diameter        
