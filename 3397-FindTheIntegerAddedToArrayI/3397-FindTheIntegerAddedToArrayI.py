@@ -1,0 +1,14 @@
+# Last updated: 3/29/2026, 11:37:16 AM
+class Solution(object):
+    def addedInteger(self, nums1, nums2):
+        """
+        :type nums1: List[int]
+        :type nums2: List[int]
+        :rtype: int
+        """
+        nums1.sort(reverse=True)
+        nums2.sort(reverse=True)
+        x=nums2[0]-nums1[0]
+        return(x)
+
+        
