@@ -1,25 +1,20 @@
-# Last updated: 4/11/2026, 2:04:55 PM
+# Last updated: 4/11/2026, 2:07:11 PM
 1class Solution(object):
-2    def eraseOverlapIntervals(self, intervals):
-3        """
-4        :type intervals: List[List[int]]
-5        :rtype: int
-6        """
-7        if not intervals:
-8            return 0
-9
+2    def partitionLabels(self, s):
+3        
+4        last = {ch: i for i, ch in enumerate(s)}
+5        
+6        result = []
+7        start = 0
+8        end = 0
+9        
 10        
-11        intervals.sort(key=lambda x: x[1])
-12
-13        count = 0
-14        prev_end = intervals[0][1]
-15
-16        for i in range(1, len(intervals)):
-17            if intervals[i][0] >= prev_end:
-18                
-19                prev_end = intervals[i][1]
-20            else:
-21            
-22                count += 1
-23
-24        return count
+11        for i, ch in enumerate(s):
+12            end = max(end, last[ch])
+13            
+14        
+15            if i == end:
+16                result.append(end - start + 1)
+17                start = i + 1
+18        
+19        return result
