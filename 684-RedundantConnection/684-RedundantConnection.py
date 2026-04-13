@@ -1,34 +1,32 @@
-# Last updated: 4/13/2026, 5:54:46 PM
-1from collections import deque
-2
-3class Solution(object):
-4    def shortestPathBinaryMatrix(self, grid):
-5        n = len(grid)
-6        
-7    
-8        if grid[0][0] != 0 or grid[n-1][n-1] != 0:
-9            return -1
-10        
+# Last updated: 4/13/2026, 5:56:26 PM
+1import heapq
+2from collections import defaultdict
+3
+4class Solution(object):
+5    def networkDelayTime(self, times, n, k):
+6        graph = defaultdict(list)
+7        
+8        
+9        for u, v, w in times:
+10            graph[u].append((v, w))
 11        
-12        directions = [(-1,-1), (-1,0), (-1,1),
-13                      (0,-1),        (0,1),
-14                      (1,-1), (1,0), (1,1)]
-15        
-16        q = deque([(0, 0, 1)])  
-17        grid[0][0] = 1  
-18        
-19        while q:
-20            r, c, dist = q.popleft()
-21            
-22        
-23            if r == n-1 and c == n-1:
-24                return dist
+12        
+13        heap = [(0, k)]
+14        visited = set()
+15        max_time = 0
+16        
+17        while heap:
+18            time, node = heapq.heappop(heap)
+19            
+20            if node in visited:
+21                continue
+22            
+23            visited.add(node)
+24            max_time = max(max_time, time)
 25            
-26            for dr, dc in directions:
-27                nr, nc = r + dr, c + dc
-28                
-29                if 0 <= nr < n and 0 <= nc < n and grid[nr][nc] == 0:
-30                    q.append((nr, nc, dist + 1))
-31                    grid[nr][nc] = 1 
-32        
-33        return -1
+26            for nei, wt in graph[node]:
+27                if nei not in visited:
+28                    heapq.heappush(heap, (time + wt, nei))
+29        
+30        
+31        return max_time if len(visited) == n else -1
