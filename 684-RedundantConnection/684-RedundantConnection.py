@@ -1,28 +1,23 @@
-# Last updated: 4/13/2026, 5:57:40 PM
-1import heapq
+# Last updated: 4/13/2026, 5:58:48 PM
+1from collections import deque
 2
 3class Solution(object):
-4    def minCostConnectPoints(self, points):
-5        n = len(points)
-6        visited = set()
-7        heap = [(0, 0)]  # (cost, point_index)
-8        total_cost = 0
-9        
-10        while len(visited) < n:
-11            cost, i = heapq.heappop(heap)
-12            
-13            if i in visited:
-14                continue
-15            
-16            visited.add(i)
-17            total_cost += cost
-18            
-19            for j in range(n):
-20                if j not in visited:
-21                    x1, y1 = points[i]
-22                    x2, y2 = points[j]
-23                    dist = abs(x1 - x2) + abs(y1 - y2)
-24                    heapq.heappush(heap, (dist, j))
-25        
-26        return total_cost
-27        
+4    def isBipartite(self, graph):
+5        n = len(graph)
+6        color = [-1] * n
+7        
+8        for i in range(n):
+9            if color[i] == -1:
+10                q = deque([i])
+11                color[i] = 0
+12                
+13                while q:
+14                    node = q.popleft()
+15                    
+16                    for nei in graph[node]:
+17                        if color[nei] == -1:
+18                            color[nei] = 1 - color[node]
+19                            q.append(nei)
+20                        elif color[nei] == color[node]:
+21                            return False
+22        return True
