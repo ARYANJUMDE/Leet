@@ -1,32 +1,28 @@
-# Last updated: 4/13/2026, 5:56:26 PM
+# Last updated: 4/13/2026, 5:57:40 PM
 1import heapq
-2from collections import defaultdict
-3
-4class Solution(object):
-5    def networkDelayTime(self, times, n, k):
-6        graph = defaultdict(list)
-7        
-8        
-9        for u, v, w in times:
-10            graph[u].append((v, w))
-11        
-12        
-13        heap = [(0, k)]
-14        visited = set()
-15        max_time = 0
-16        
-17        while heap:
-18            time, node = heapq.heappop(heap)
-19            
-20            if node in visited:
-21                continue
-22            
-23            visited.add(node)
-24            max_time = max(max_time, time)
-25            
-26            for nei, wt in graph[node]:
-27                if nei not in visited:
-28                    heapq.heappush(heap, (time + wt, nei))
-29        
-30        
-31        return max_time if len(visited) == n else -1
+2
+3class Solution(object):
+4    def minCostConnectPoints(self, points):
+5        n = len(points)
+6        visited = set()
+7        heap = [(0, 0)]  # (cost, point_index)
+8        total_cost = 0
+9        
+10        while len(visited) < n:
+11            cost, i = heapq.heappop(heap)
+12            
+13            if i in visited:
+14                continue
+15            
+16            visited.add(i)
+17            total_cost += cost
+18            
+19            for j in range(n):
+20                if j not in visited:
+21                    x1, y1 = points[i]
+22                    x2, y2 = points[j]
+23                    dist = abs(x1 - x2) + abs(y1 - y2)
+24                    heapq.heappush(heap, (dist, j))
+25        
+26        return total_cost
+27        
