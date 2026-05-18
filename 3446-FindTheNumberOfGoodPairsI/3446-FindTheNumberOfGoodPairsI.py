@@ -1,0 +1,10 @@
+# Last updated: 5/18/2026, 12:43:38 PM
+class Solution(object):
+    def numberOfPairs(self, nums1, nums2, k):
+        count=0
+        for i in range(len(nums1)):
+            for j in range(len(nums2)):
+                if nums1[i]%(nums2[j]*k)==0:
+                    count=count+1
+        return(count)
+        
