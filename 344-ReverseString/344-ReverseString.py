@@ -1,15 +1,17 @@
-# Last updated: 12/27/2025, 6:57:34 PM
-class Solution(object):
-    def reverseString(self, s):
-        #return s[::-1]
-        left,right=0,len(s)-1
-        while (left<right):
-            s[left],s[right]=s[right],s[left]
-            left=left+1
-            right=right-1
-        return s
-
-    
-S=Solution()
-S.reverseString(["h","e","l","l","o"])
-        
+# Last updated: 6/28/2026, 1:37:54 PM
+1class Solution(object):
+2    def reverseWords(self, s):
+3        # x=s.split()
+4        # x.reverse()
+5        # t=""
+6        # for i in range(len(x)):
+7        #     t=t+x[i]
+8        #     if i != len(x) - 1:
+9        #         t += " "
+10        
+11        # return(t)
+12        x=s.split()
+13        
+14        return(' '.join(x[::-1]))
+15
+16        
