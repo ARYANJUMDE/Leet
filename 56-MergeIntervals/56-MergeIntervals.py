@@ -1,16 +1,16 @@
-# Last updated: 3/15/2026, 11:11:35 AM
+# Last updated: 6/29/2026, 12:36:03 PM
 1class Solution(object):
-2    def merge(self, intervals):
-3        x=sorted(intervals,key=lambda t:t[0])
-4        y=[x[0]]
-5        for i in range(1,len(x)):
-6            if(y[-1][1]>=x[i][0]):
-7                y[-1][1]=max(y[-1][1],x[i][1])
-8            else:
-9                y.append(x[i])
-10        
-11        
-12        return(y)
-13
-14
-15        
+2    def insert(self, intervals, newInterval):
+3        intervals.append(newInterval)
+4        intervals=sorted(intervals,key=lambda x:x[0])
+5        i=0
+6        while i<len(intervals)-1:
+7            if intervals[i][1]>=intervals[i+1][0]:
+8                intervals.insert(i,[intervals[i][0],max(intervals[i+1][1],intervals[i][1])])
+9                intervals.pop(i+1)
+10                intervals.pop(i+1)
+11                i=i-1
+12            i=i+1
+13        
+14        return(intervals)
+15
