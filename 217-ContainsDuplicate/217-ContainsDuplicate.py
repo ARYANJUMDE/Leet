@@ -1,20 +1,20 @@
-# Last updated: 12/27/2025, 6:57:49 PM
-class Solution(object):
-    def containsDuplicate(self, nums):
-        # for num in nums:
-        #     if(nums.count(num)>=2):
-        #         return True
-        # return False
-        #or
-        # seen = set()
-        # for num in nums:
-        #     if num in seen:
-        #         return True
-        #     seen.add(num)
-        # return False
-        #or
-        return len(nums) != len(set(nums))
-S=Solution()
-S.containsDuplicate([1,2,3,1])
-
-        
+# Last updated: 7/2/2026, 1:16:58 PM
+1class Solution(object):
+2    def isIsomorphic(self, s, t):
+3        hashmap1={}
+4        hashmap2={}
+5        for i in range(len(s)):
+6            if s[i] in hashmap1:
+7                if hashmap1[s[i]]!=t[i]:
+8                    return(False)
+9            else:
+10                hashmap1[s[i]]=t[i]
+11            if t[i] in hashmap2:
+12                if hashmap2[t[i]]!=s[i]:
+13                    return(False)
+14            else:
+15                hashmap2[t[i]]=s[i]
+16        return(True)
+17
+18
+19        
