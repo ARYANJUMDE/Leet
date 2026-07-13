@@ -1,0 +1,14 @@
+# Last updated: 7/13/2026, 10:07:52 PM
+class Solution(object):
+    def numberOfMatches(self, n):
+        count=0
+        while n!=1:
+            if n%2==0:
+                count=count+n/2
+                n=n/2
+            if n%2!=0:
+                count=count+(n-1)/2
+                n=((n-1)/2)+1
+        
+        return(int(count))
+        
