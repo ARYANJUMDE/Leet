@@ -1,35 +1,32 @@
-# Last updated: 2/21/2026, 5:43:49 PM
-1class Solution(object):
-2    def solveNQueens(self, n):
-3        res = []
-4        board = [["."] * n for _ in range(n)]
-5
-6        cols = set()
-7        diag1 = set() 
-8        diag2 = set()  
-9
-10        def backtrack(r):
-11            if r == n:
-12                temp = ["".join(row) for row in board]
-13                res.append(temp)
-14                return
-15            
-16            for c in range(n):
-17                if c in cols or (r - c) in diag1 or (r + c) in diag2:
-18                    continue
-19                
-20                # place queen
-21                board[r][c] = "Q"
-22                cols.add(c)
-23                diag1.add(r - c)
-24                diag2.add(r + c)
-25
-26                backtrack(r + 1)
-27                board[r][c] = "."
-28                cols.remove(c)
-29                diag1.remove(r - c)
-30                diag2.remove(r + c)
-31
-32        backtrack(0)
-33        return res
-34        
+# Last updated: 8/20/2026, 6:22:46 PM
+1from itertools import permutations
+2class Solution(object):
+3    def permute(self, nums):
+4        result=[]
+5        def solve(a,map1):
+6            if len(a)==len(nums):
+7                result.append(a[:])
+8                return
+9            else:
+10                for i in range(len(nums)):
+11                    if i not in map1:
+12                        a.append(nums[i])
+13                        map1.append(i)
+14                        solve(a,map1)
+15                        a.pop()
+16                        map1.pop()
+17        solve([],[])
+18        return result
+19
+20
+21
+22        # x=[]
+23        # t=permutations(nums,len(nums))
+24        # for i in t:
+25        #     if i not in x:
+26        #         x.append(list(i))
+27        # return(x)
+28
+29
+30
+31        
