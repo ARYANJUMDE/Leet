@@ -1,4 +1,4 @@
-# Last updated: 9/11/2026, 12:46:40 PM
+# Last updated: 9/11/2026, 12:48:28 PM
 1
 2        
 3class Solution(object):
@@ -20,20 +20,21 @@
 19        max1=nums[0]
 20        for i in range(len(nums)):
 21            sum1=sum1+nums[i]
-22            max1=max(max1,sum1)
-23            if sum1<0:
-24                sum1=0
-25        return max1
-26            
-27
-28        # max_sum = nums[0]
-29        # curr_sum = nums[0]
-30        
-31        # for i in range(1, len(nums)):
-32        #     # Either extend the current subarray OR start new from nums[i]
-33        #     curr_sum = max(nums[i], curr_sum + nums[i])
-34        #     max_sum = max(max_sum, curr_sum)
-35        
-36        # return max_sum
-37
+22            if max1<sum1:
+23                max1=sum1
+24            if sum1<0:
+25                sum1=0
+26        return max1
+27            
+28
+29        # max_sum = nums[0]
+30        # curr_sum = nums[0]
+31        
+32        # for i in range(1, len(nums)):
+33        #     # Either extend the current subarray OR start new from nums[i]
+34        #     curr_sum = max(nums[i], curr_sum + nums[i])
+35        #     max_sum = max(max_sum, curr_sum)
+36        
+37        # return max_sum
 38
+39
