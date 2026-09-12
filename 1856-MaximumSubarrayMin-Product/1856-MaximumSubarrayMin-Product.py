@@ -1,18 +1,18 @@
-# Last updated: 9/12/2026, 4:51:39 PM
+# Last updated: 9/12/2026, 4:54:59 PM
 1class Solution(object):
 2    def lengthOfLongestSubstring(self, s):
 3        curr_len=0
 4        final_len=0
 5        l=0
 6        r=0
-7        t=[]
+7        t=set()
 8        while r<len(s):
 9            if s[r] in t:
 10                while s[r] in t:
-11                    t.pop(0)
+11                    t.remove(s[l])
 12                    l=l+1
 13                    curr_len=curr_len-1
-14            t.append(s[r])
+14            t.add(s[r])
 15            curr_len=curr_len+1
 16            if curr_len>final_len:
 17                final_len=curr_len
