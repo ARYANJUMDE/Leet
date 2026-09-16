@@ -1,4 +1,4 @@
-# Last updated: 9/16/2026, 5:31:23 PM
+# Last updated: 9/16/2026, 5:31:42 PM
 1class Solution(object):
 2    def minWindow(self, s, t):
 3        # map1={}
@@ -44,24 +44,23 @@
 43                    map1[t[i]]=1
 44                else:
 45                    map1[t[i]]=map1[t[i]]+1
-46            k=map1.copy()
-47            while r<len(s):
-48                if s[r] in map1:
-49                    map1[s[r]]=map1[s[r]]-1
-50                    if map1[s[r]]>=0:
-51                        count=count+1
-52                while count==len(t):
-53                    if r-l+1<min_len:
-54                        min_len=r-l+1
-55                        start=l
-56                    if s[l] in map1:
-57                        map1[s[l]]=map1[s[l]]+1
-58                        if map1[s[l]]>0:
-59                            count=count-1
-60                    l=l+1
-61                r=r+1
-62        if start==-1:
-63            return ""
-64        else:
-65            return (s[start:(start+min_len)])
-66
+46            while r<len(s):
+47                if s[r] in map1:
+48                    map1[s[r]]=map1[s[r]]-1
+49                    if map1[s[r]]>=0:
+50                        count=count+1
+51                while count==len(t):
+52                    if r-l+1<min_len:
+53                        min_len=r-l+1
+54                        start=l
+55                    if s[l] in map1:
+56                        map1[s[l]]=map1[s[l]]+1
+57                        if map1[s[l]]>0:
+58                            count=count-1
+59                    l=l+1
+60                r=r+1
+61        if start==-1:
+62            return ""
+63        else:
+64            return (s[start:(start+min_len)])
+65
