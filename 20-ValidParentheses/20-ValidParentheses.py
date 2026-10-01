@@ -1,20 +1,20 @@
-# Last updated: 7/13/2026, 10:13:05 PM
-class Solution(object):
-    def isValid(self, s):
-        stack=[]
-        for ch in s:
-            if(ch in "({["):
-                stack.append(ch)
-            else:
-                if len(stack)==0:
-                    return False
-                top=stack.pop()
-
-                if ((ch==")" and top!="(") or (ch=="]" and top!="[") or (ch=="}" and top!="{")):
-
-
-                    return False
-        return len(stack)==0
-
-        
-        
+# Last updated: 10/1/2026, 4:22:00 PM
+1class Solution(object):
+2    def isValid(self, s):
+3        stack=[]
+4        for ch in s:
+5            if(ch in "({["):
+6                stack.append(ch)
+7            else:
+8                if len(stack)==0:
+9                    return False
+10                top=stack.pop()
+11
+12                if ((ch==")" and top!="(") or (ch=="]" and top!="[") or (ch=="}" and top!="{")):
+13
+14
+15                    return False
+16        return len(stack)==0
+17
+18        
+19        
