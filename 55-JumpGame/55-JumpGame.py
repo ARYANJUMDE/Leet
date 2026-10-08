@@ -1,4 +1,4 @@
-# Last updated: 9/20/2026, 2:53:58 PM
+# Last updated: 10/8/2026, 4:13:43 PM
 1class Solution(object):
 2    def canJump(self, nums):
 3        # reach=0
@@ -15,13 +15,22 @@
 14        # else:
 15        #     return(True)
 16
-17        max_index=0
-18        for i in range(len(nums)):
-19            if i>max_index:
-20                return False
-21            jump=i+nums[i]
-22            if jump>max_index:
-23                max_index=jump
-24            if max_index>=len(nums)-1:
-25                return True
-26            
+17        # max_index=0
+18        # for i in range(len(nums)):
+19        #     if i>max_index:
+20        #         return False
+21        #     jump=i+nums[i]
+22        #     if jump>max_index:
+23        #         max_index=jump
+24        #     if max_index>=len(nums)-1:
+25        #         return True
+26        j=0
+27        max_index=0
+28        for i in range(len(nums)):
+29            if i>max_index:
+30                return False
+31            j=i+nums[i]
+32            if max_index<j:
+33                max_index=j
+34            if max_index>=len(nums)-1:
+35                return True
